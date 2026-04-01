@@ -16,8 +16,9 @@ class ProfileProvider extends ChangeNotifier {
   final Map<String, List<String>> skills = {
     "Programming Languages": ["Dart", "Python", "PHP", "JavaScript", "C"],
     "Mobile & Frameworks": ["Flutter", "Provider", "Firebase", "WebSocket", "FCM"],
-    "Backend & Tools": ["REST APIs", "Laravel", "Git", "Postman"],
-    "AI & Machine Learning": ["Machine Learning", "Deep Learning", "NLP", "ANN", "CNN", "XGBoost"],
+    "Backend & Tools": ["REST APIs", "Laravel", "Git", "Postman", ],
+    "AI & Machine Learning": ["Machine Learning", "Deep Learning", "NLP", "TensorFlow", "Scikit-learn"],
+    "Others Tools" : ["Colab", "VS Code", "Android Studio", "Figma", "Canva", "Microsoft Office", "Google Workspace",],
   };
 
   final List<Map<String, dynamic>> projects = [
@@ -61,7 +62,7 @@ class ProfileProvider extends ChangeNotifier {
       "role": "Lecturer",
       "company": "Chittagong Technical College",
       "date": "2025",
-      "desc": "Taught Python, C and mentored students."
+      "desc": "Taught Computer Science and Technology and mentored students."
     },
   ];
 
@@ -71,6 +72,18 @@ class ProfileProvider extends ChangeNotifier {
       "institute": "Port City International University",
       "date": "2019 – 2024",
       "grade": "CGPA: 3.74/4.00"
+    },
+    {
+      "degree": "Heigher School Certificate (HSC) in Science",
+      "institute": "Principal Kazi Faruque College",
+      "date": "2017 – 2019",
+      "grade": "A Grade"
+    },
+    {
+      "degree": "Secondary School Certificate (SSC) in Science",
+      "institute": "Sermon School and College",
+      "date": "2015 – 2017",
+      "grade": "A Grade"
     }
   ];
   final List<Map<String, String>> achievements = [
@@ -84,6 +97,13 @@ class ProfileProvider extends ChangeNotifier {
     {"title": "PHP and Laravel Framework", "issuer": "BASIS • 2023"},
     {"title": "Skills for Career Progression", "issuer": "PCIU • 2022"},
     {"title": "Digital Marketing", "issuer": "SR Dream IT • 2022"},
+  ];
+  
+   final List<Map<String, String>> activities = [
+    {"title": "PCIU Computer Club", "issuer": "Finance Secretary • 2023-2024"},
+    {"title": "Sponsor Team Head", "issuer": "PCIU Volunteers • 2023"},
+    {"title": "Executive Member", "issuer": "School of Engineers • 2023-2024"},
+    {"title": "Media Editor", "issuer": "The Sheild • 2022-2023"},
   ];
   
   

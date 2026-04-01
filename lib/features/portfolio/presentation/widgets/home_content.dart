@@ -26,10 +26,11 @@ class HomeContent extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 38.r,
-                backgroundImage:
-                    const AssetImage('assets/images/profile.jpg'),
-              ).animate().fadeIn().scale(
-                  begin: const Offset(0.85, 0.85), duration: 500.ms),
+                backgroundImage: const AssetImage('assets/images/profile.jpg'),
+              )
+                  .animate()
+                  .fadeIn()
+                  .scale(begin: const Offset(0.85, 0.85), duration: 500.ms),
               SizedBox(width: 16.w),
               const AvailabilityBadge(isAvailable: true),
             ],
@@ -64,26 +65,38 @@ class HomeContent extends StatelessWidget {
                   icon: Icons.rocket_launch,
                   value: "6+",
                   label: "Projects",
-                  onTap: () => nav.navigateTo(2), 
+                  onTap: () => nav.navigateTo(2),
                 ),
                 StatCard(
                   icon: Icons.analytics,
                   value: "3+",
                   label: "Research",
-                  onTap: () => nav.navigateTo(5), 
+                  onTap: () => nav.navigateTo(5),
                 ),
                 StatCard(
                   icon: Icons.emoji_events,
                   value: "3",
                   label: "Achievements",
-                  onTap: () => nav.navigateTo(6), 
+                  onTap: () => nav.navigateTo(6),
                 ),
                 StatCard(
                   icon: Icons.verified,
                   value: "4",
                   label: "Certificates",
-                  onTap: () => nav.navigateTo(7), 
+                  onTap: () => nav.navigateTo(7),
                 ),
+                StatCard(
+                  icon: Icons.school_rounded,
+                  value: "16+ Years",
+                  label: "Education",
+                  onTap: () => nav.navigateTo(8),
+                ),
+                StatCard(
+                  icon: Icons.volunteer_activism,
+                  value: "4+",
+                  label: "Activities",
+                  onTap: () => nav.navigateTo(9),
+                )
               ],
             ),
           ),

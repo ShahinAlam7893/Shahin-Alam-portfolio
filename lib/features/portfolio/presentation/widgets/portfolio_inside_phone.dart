@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:shahin_portfolio/features/portfolio/presentation/providers/navigation_provider.dart';
 import 'package:shahin_portfolio/features/portfolio/presentation/providers/theme_provider.dart';
 import 'package:shahin_portfolio/features/portfolio/presentation/widgets/achievements_content.dart';
+import 'package:shahin_portfolio/features/portfolio/presentation/widgets/activity_content.dart';
 import 'package:shahin_portfolio/features/portfolio/presentation/widgets/certifications_content.dart';
+import 'package:shahin_portfolio/features/portfolio/presentation/widgets/education_content.dart';
 import 'package:shahin_portfolio/features/portfolio/presentation/widgets/research_content.dart';
 import 'home_content.dart';
 import 'skills_content.dart';
@@ -25,6 +27,8 @@ class PortfolioInsidePhone extends StatelessWidget {
     ResearchContent(),      
     AchievementsContent(),   
     CertificationsContent(),
+    EducationContent(),
+    ActivityContent(),
   ];
 
   // Map bottom nav index → screen index (bottom nav only has 5 items)
@@ -50,7 +54,31 @@ class PortfolioInsidePhone extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
       ),
-      body: _screens[screenIndex],
+      body: LayoutBuilder(
+  builder: (context, constraints) {
+    double horizontalPadding;
+
+    if (constraints.maxWidth > 1400) {
+      horizontalPadding = 120;
+    } else if (constraints.maxWidth > 1000) {
+      horizontalPadding = 80;
+    } else if (constraints.maxWidth > 600) {
+      horizontalPadding = 40;
+    } else {
+      horizontalPadding = 16;
+    }
+
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1200),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+          child: _screens[screenIndex],
+        ),
+      ),
+    );
+  },
+),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomNavIndex,
         onTap: (index) => navProvider.navigateTo(_navToScreen[index]),

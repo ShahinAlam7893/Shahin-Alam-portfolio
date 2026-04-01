@@ -60,7 +60,7 @@ class StatCard extends StatelessWidget {
               label,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 15.sp,
+                fontSize: 24.sp,
                 color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.85),
               ),
             ),
