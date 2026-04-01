@@ -5,16 +5,16 @@ class AppTheme {
   static final darkTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
-    primaryColor: const Color(0xFF00E6A8),
-    scaffoldBackgroundColor: const Color(0xFF0A0F1A),
-    cardColor: const Color(0xFF161D2F),
+    primaryColor: Colors.white, // Cyan accent
+    scaffoldBackgroundColor: const Color(0xFF0A2540), // Deep Navy
+    cardColor: const Color(0xFF132F4A),
     textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
   );
 
   static final lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
-    primaryColor: const Color(0xFF00C48C),
+    primaryColor: const Color(0xFF132F4A),
     scaffoldBackgroundColor: const Color(0xFFF8FAFC),
     cardColor: Colors.white,
     textTheme: GoogleFonts.interTextTheme(ThemeData.light().textTheme),

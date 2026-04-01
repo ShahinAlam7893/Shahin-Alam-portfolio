@@ -1,3 +1,4 @@
+// lib/features/portfolio/presentation/providers/profile_provider.dart
 import 'package:flutter/material.dart';
 
 class ProfileProvider extends ChangeNotifier {
@@ -6,36 +7,47 @@ class ProfileProvider extends ChangeNotifier {
   final String location = "Dhaka, Bangladesh";
   final String phone = "+880 1609-500994";
   final String email = "shahinalam7892@gmail.com";
-  final String researchgate = "https://www.researchgate.net/profile/Shahin-Alam-2";
-  final String github = "https://github.com/shahinalam7893";
-  final String about = "Flutter Developer and Software Engineer with experience in building scalable cross-platform mobile applications..."; // full from resume
+  final String github = "https://github.com/ShahinAlam7893";
+  final String researchgate = "https://www.researchgate.net/profile/Shahin-Alam-26";
+  final String linkedin = "https://www.linkedin.com/in/shahin-alam7892";
 
-  // Skills grouped
+  final String about = "Flutter Developer and Software Engineer with experience in building scalable cross-platform mobile applications, REST API integration, and AI-powered systems. Proven ability to develop real-time features, optimize performance, and deliver user-centric applications. Strong foundation in machine learning and data analysis.";
+
   final Map<String, List<String>> skills = {
     "Programming Languages": ["Dart", "Python", "PHP", "JavaScript", "C"],
-    "Frameworks & Tools": ["Flutter", "Provider", "Firebase", "REST APIs", "Laravel", "Git", "WebSocket", "FCM"],
-    "AI & ML": ["Machine Learning", "Deep Learning", "NLP", "ANN", "CNN", "XGBoost"],
+    "Mobile & Frameworks": ["Flutter", "Provider", "Firebase", "WebSocket", "FCM"],
+    "Backend & Tools": ["REST APIs", "Laravel", "Git", "Postman"],
+    "AI & Machine Learning": ["Machine Learning", "Deep Learning", "NLP", "ANN", "CNN", "XGBoost"],
   };
 
   final List<Map<String, dynamic>> projects = [
     {
       "title": "CircleSlate",
-      "date": "2024 - Present",
+      "date": "2025",
       "desc": "Real-time scheduling app with WebSocket chat and Google Calendar integration.",
       "tech": ["Flutter", "WebSocket", "REST API", "Google Calendar"]
     },
     {
       "title": "SayTask",
-      "date": "2024",
-      "desc": "AI-powered task management with voice input and real-time sync.",
+      "date": "2025",
+      "desc": "AI-powered task management and call scheduling with voice input and real-time sync.",
       "tech": ["Flutter", "Firebase", "AI Voice", "OAuth"]
     },
     {
       "title": "Florle",
-      "date": "2023",
+      "date": "2026",
       "desc": "Real-time garden visualization system with AI photo optimization.",
       "tech": ["Flutter", "AI", "Firebase"]
     },
+  ];
+
+  final List<Map<String, String>> research = [
+    {"title": "A Comparative Analysis of Cardiovascular Disease (CVD) Detection Using Machine Learning and Deep Learning", 
+      "date": "2024",
+    "desc": "Applied 11 single ML/DL models and 5 hybrid models. Achieved 96% accuracy with ANN and CNN+XGBoost, outperforming previous research."},
+    {"title": "Sentiment Analysis of Product Reviews: A Comparative Study of NLP and Deep Learning Approaches", 
+      "date": "2025",
+    "desc": "DOI: DOI: 10.1109/QPAIN66474.2025.11171988"},
   ];
 
   final List<Map<String, dynamic>> experiences = [
@@ -61,4 +73,20 @@ class ProfileProvider extends ChangeNotifier {
       "grade": "CGPA: 3.74/4.00"
     }
   ];
+  final List<Map<String, String>> achievements = [
+    {"title": "2nd Place", "event": "PCIU Programming Contest 2024"},
+    {"title": "Participant", "event": "ICPC Preliminary 2023"},
+    {"title": "3rd Place", "event": "Programming Contest 2022"},
+  ];
+
+  final List<Map<String, String>> certifications = [
+    {"title": "Full-Stack Web Development", "issuer": "OSTAD • 2024"},
+    {"title": "PHP and Laravel Framework", "issuer": "BASIS • 2023"},
+    {"title": "Skills for Career Progression", "issuer": "PCIU • 2022"},
+    {"title": "Digital Marketing", "issuer": "SR Dream IT • 2022"},
+  ];
+  
+  
 }
+
+
