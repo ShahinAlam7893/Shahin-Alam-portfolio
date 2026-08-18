@@ -15,8 +15,7 @@ class SkillGroupCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 420.w,
-      padding: EdgeInsets.all(32.w),
+      padding: EdgeInsets.all(28.w),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(24.r),

@@ -2,127 +2,119 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shahin_portfolio/features/portfolio/presentation/providers/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:shahin_portfolio/core/theme/app_colors.dart';
 import '../providers/profile_provider.dart';
+import 'sections/section_header.dart';
+import 'social_links.dart';
+import 'cursor/hover_region.dart';
 
 class ContactContent extends StatelessWidget {
   const ContactContent({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final profile = Provider.of<ProfileProvider>(context);
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    final isDark = themeProvider.themeMode == ThemeMode.dark;
+    final profile = context.watch<ProfileProvider>();
+    final accent = AppColors.accent(context);
 
-    return SingleChildScrollView(
-      padding: EdgeInsets.all(24.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Get In Touch",
-            style: TextStyle(fontSize: 32.sp, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 30.h),
-
-          // Contact Information
-          _contactTile(Icons.phone, profile.phone),
-          _contactTile(Icons.email, profile.email),
-          _contactTile(Icons.location_on, profile.location),
-
-          SizedBox(height: 40.h),
-
-          // Social Links
-          Text(
-            "Connect with me",
-            style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w600),
-          ),
-          SizedBox(height: 20.h),
-
-          _socialButton(
-            icon: Icons.code,
-            label: "GitHub",
-            url: profile.github,
-            // color: const Color(0xFF090d0a),
-          ),
-          SizedBox(height: 12.h),
-          _socialButton(
-            icon: Icons.link,
-            label: "LinkedIn",
-            url: profile.linkedin ??
-                "https://www.linkedin.com/in/shahin-alam7892/", // fallback if not set
-            // color: const Color(0xFF0A66C2),
-          ),
-
-          SizedBox(height: 40.h),
-
-          // Email Button
-          ElevatedButton.icon(
-            onPressed: () => launchUrl(Uri.parse("mailto:${profile.email}")),
-            icon:  Icon(Icons.send, color: isDark ? const Color(0xFF0A2540) : Colors.white),
-            label: Text(
-              "Send Email",
-              style: TextStyle(fontSize: 18, color: isDark ? const Color(0xFF0A2540) : Colors.white),
-            ),
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(double.infinity, 60.h),
-              backgroundColor: isDark ? Colors.white : const Color(0xFF0A2540),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.r),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SectionHeader(title: 'Let\'s work together', eyebrow: 'Contact'),
+        SizedBox(height: 18.h),
+        Text(
+          'Have a project in mind, or want to talk about Flutter and AI?\nI\'m always open to thoughtful conversations.',
+          style: TextStyle(fontSize: 18.sp, height: 1.65),
+        ),
+        SizedBox(height: 28.h),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final items = [
+              (Icons.email_outlined, 'Email', profile.email),
+              (Icons.phone_outlined, 'Phone', profile.phone),
+              (Icons.location_on_outlined, 'Based in', profile.location),
+            ];
+            return Wrap(
+              spacing: 14,
+              runSpacing: 14,
+              children: [
+                for (final item in items)
+                  SizedBox(
+                    width: constraints.maxWidth < 600
+                        ? constraints.maxWidth
+                        : (constraints.maxWidth - 28) / 3,
+                    child: _ContactTile(
+                      icon: item.$1,
+                      label: item.$2,
+                      value: item.$3,
+                    ),
+                  ),
+              ],
+            );
+          },
+        ),
+        SizedBox(height: 30.h),
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 20,
+          runSpacing: 16,
+          children: [
+            HoverRegion(
+              child: FilledButton.icon(
+                onPressed: () => launchUrl(Uri.parse('mailto:${profile.email}')),
+                icon: const Icon(Icons.send_rounded),
+                label: const Text('Send an email'),
+                style: FilledButton.styleFrom(
+                  backgroundColor: accent,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+                ),
               ),
+            ),
+            SocialLinks(),
+          ],
+        ),
+        SizedBox(height: 56.h),
+        Text(
+          '© ${DateTime.now().year} Shahin Alam. Built with Flutter.',
+          style: TextStyle(fontSize: 12.sp, color: Theme.of(context).hintColor),
+        ),
+      ],
+    );
+  }
+}
+
+class _ContactTile extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+  const _ContactTile({required this.icon, required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    final accent = AppColors.accent(context);
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.surface(context),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: AppColors.border(context)),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: accent, size: 22),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(label, style: TextStyle(fontSize: 12, color: Theme.of(context).hintColor)),
+                const SizedBox(height: 3),
+                Text(value, overflow: TextOverflow.ellipsis, style: const TextStyle(fontWeight: FontWeight.w600)),
+              ],
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _contactTile(IconData icon, String text) {
-    return ListTile(
-      leading: Icon(icon, size: 32),
-      title: Text(text, style: TextStyle(fontSize: 24.sp)),
-      contentPadding: EdgeInsets.symmetric(vertical: 8.h),
-    );
-  }
-
-  Widget _socialButton({
-    required IconData icon,
-    required String label,
-    required String url,
-    // required Color color,
-  }) {
-    return InkWell(
-      onTap: () => launchUrl(Uri.parse(url)),
-      borderRadius: BorderRadius.circular(16.r),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-        decoration: BoxDecoration(
-          // color: color.withOpacity(0.15),
-          borderRadius: BorderRadius.circular(16.r),
-          // border: Border.all(color: color.withOpacity(0.3)
-          //     // color: const Color(0xFF00D4FF).withOpacity(0.3),
-          //     ),
-        ),
-        child: Row(
-          children: [
-            Icon(icon, size: 28),
-            SizedBox(width: 16.w),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w600,
-                // color: color,
-              ),
-            ),
-            const Spacer(),
-            const Icon(
-              Icons.arrow_forward_ios,
-              size: 20,
-            ),
-          ],
-        ),
       ),
     );
   }
